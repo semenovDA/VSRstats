@@ -49,7 +49,7 @@ from VSRstats import showPeaks
 showPeaks(signal)
 ```
 #### Output: ####
-!(Signal peaks)[https://ibb.co/vmbgXDx]
+![Signal peaks](https://i.ibb.co/ctPMYxc/Figure-1.png)
 
 ### Usage example for signals: ###
 ```python
