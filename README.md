@@ -33,7 +33,7 @@ Usage example for signals:
 ```python
 filepathes = ['./data/d0001', './data/d0002', './data/d0003'] # Signals
 signals = np.array([loadSignal(f) for f in filepathes])
-stats = VSR(signal).stats
+stats = VSR(signals).stats
 print(len(stats))
 ```
 > 3
