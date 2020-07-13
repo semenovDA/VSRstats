@@ -1,14 +1,23 @@
 # VSRstats
 Sphygmogram VSR compute util
 
-Install next packages: `pip install pyhrv numpy pandas peakutils matplotlib`  
+## Installtion
+The VSRstats package is completely pip-installable use:
+`pip install VSRstats`  
+or install from git
+```
+$ git clone https://github.com/semenovDA/VSRstats
+$ pyhton setup.py install
+```
+`pyhton setup.py install`
 Define required libraries:
 ```python
 from struct import unpack
 import numpy as np
-import VSR
+from VSRstats import VSR
 ```
 
+## Useage
 Define loading signal function:
 ```python
 def loadSignal(filepath):
