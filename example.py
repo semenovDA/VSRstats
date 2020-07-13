@@ -1,38 +1,26 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 from struct import unpack
-
-from VSRstats import VSR # Custom class for stats of baevsky
+import numpy as np
+from VSRstats import VSR
 
 import warnings
 warnings.filterwarnings("ignore")
 
-d_path = './data' # data path
-s_path = './submission.xls' # submission path
-
-submission = pd.read_excel(s_path)
-
-df = pd.DataFrame()
-
 def loadSignal(filepath):
-    # Read signal from file
+    
     file = open(filepath, "rb").read()
     ufile = unpack('10000H', file)
-    return np.array(ufile) 
+    arr = np.array(ufile)
+    
+    return arr
 
-signals = []
-for index, row in submission.iterrows():
-    filepath = d_path + '/' + row['Имя файла']
-    signals.append(loadSignal(filepath))
-  
-    if index % int(len(submission) / 10) == 0:
-        print('[{}/{} processed]'.format(index, len(submission)))
+filepath = './data/d0001' # path to signal
+signal = loadSignal(filepath)
+stats = VSR(signal).stats
+print(stats)
 
-stats = VSR(signals).stats        
+filepathes = ['./data/d0001', './data/d0002', './data/d0003'] # Signals
+signals = np.array([loadSignal(f) for f in filepathes])
+stats = VSR(signals).stats
 print(len(stats))
-output = pd.concat([pd.DataFrame(results), submission], axis=1)
-
-# output.to_excel('./result.xls')
 
 
