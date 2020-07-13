@@ -1,21 +1,11 @@
 # VSRstats
 Sphygmogram VSR compute util
 
-Requirments:
-```
-
-pip install pyhrv
-pip install numpy
-pip install pandas
-pip install peakutils
-pip install matplotlib
-
-```
-
+Required libraries: `pip install pyhrv numpy pandas peakutils matplotlib`
 
 Usage example for 1 signal:
 ```pyhton
-  
+
 ```
 
 Usage example for signals:
