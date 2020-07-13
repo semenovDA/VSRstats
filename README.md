@@ -10,6 +10,8 @@ $ git clone https://github.com/semenovDA/VSRstats
 $ pyhton setup.py install
 ```
 `pyhton setup.py install`
+
+## Usage
 Define required libraries:
 ```python
 from struct import unpack
@@ -17,7 +19,6 @@ import numpy as np
 from VSRstats import VSR
 ```
 
-## Useage
 Define loading signal function:
 ```python
 def loadSignal(filepath):
