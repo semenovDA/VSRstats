@@ -1,2 +1,2 @@
 # VSRstats
-Sphygmogram VSR compute library
+Sphygmogram VSR compute util
