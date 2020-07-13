@@ -38,9 +38,10 @@ stats = VSR(signal).stats
 print(stats)
 ```
 #### Output: ####
-> {'nni_counter': 125, 'nni_mean': 79.92, 'nni_min': 66.0, 'nni_max': 88.0, 'hr_mean': 752.1562922784314, 
-'hr_min': 681.8181818181819, 'hr_max': 909.0909090909091, 
-'hr_std': 33.27091439584001, ..... 'tri_index': 1.6025641025641026}
+```
+{'nni_counter': 125, 'nni_mean': 79.92, 'nni_min': 66.0, 'nni_max': 88.0, 'hr_mean': 752.1562922784314, 
+'hr_min': 681.8181818181819, 'hr_max': 909.0909090909091, 'hr_std': 33.27091439584001, ..... 'tri_index': 1.6025641025641026}
+```
 
 ### Usage example for signals: ###
 ```python
@@ -50,4 +51,6 @@ stats = VSR(signals).stats
 print(len(stats))
 ```
 #### Output: ####
-> 3
+```
+3
+```
