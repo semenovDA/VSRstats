@@ -18,9 +18,15 @@ signal = loadSignal(filepath)
 stats = VSR(signal).stats
 print(stats)
 
+# Display peaks
+from VSRstats import showPeaks
+showPeaks(signal)
+
 filepathes = ['./data/d0001', './data/d0002', './data/d0003'] # Signals
 signals = np.array([loadSignal(f) for f in filepathes])
-stats = VSR(signals).stats
-print(len(stats))
+vsr = VSR(signals)
+print(len(vsr.stats))
 
-
+# Saving results
+vsr.to_csv('./results.csv')
+vsr.to_excel('./results.xls')
