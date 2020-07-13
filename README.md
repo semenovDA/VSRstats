@@ -6,7 +6,7 @@ Define required libraries:
 ```python
 from struct import unpack
 import numpy as np
-from VSR import VSR 
+import VSR
 ```
 
 Define loading signal function:
