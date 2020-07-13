@@ -27,7 +27,6 @@ def loadSignal(filepath):
     
     return arr
 
-#
     
 class VSR:
     
