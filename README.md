@@ -6,7 +6,11 @@ The VSRstats package is completely pip-installable use: `$ pip install VSRstats`
 or install from github: `$ pip install git+https://github.com/semenovDA/VSRstats`  
 
 ## Usage ##
-**You can use example** `./data` **that included in this repository**
+**You can use example that included in this repository**
+```IRC log
+$ git clone https://github.com/semenovDA/VSRstats
+$ pyhton example.py
+```
 
 ### Define required libraries: ###
 ```python
