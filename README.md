@@ -1,15 +1,9 @@
 # VSRstats
 Sphygmogram VSR compute util
 
-## Installtion
-The VSRstats package is completely pip-installable use:
-`pip install VSRstats`  
-or install from git
-```
-$ git clone https://github.com/semenovDA/VSRstats
-$ pyhton setup.py install
-```
-`pyhton setup.py install`
+## Installation
+The VSRstats package is completely pip-installable use: `$ pip install VSRstats`  
+or install from github: `$ pip install git+https://github.com/semenovDA/VSRstats`  
 
 ## Usage
 Define required libraries:
