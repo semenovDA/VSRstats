@@ -10,5 +10,6 @@ setup(
     url='http://bsu.ru/',
     description='VSR statstics compute util',
     #long_description=open(join(dirname(__file__), 'README.md')).read(),
-    install_requires=['pyhrv', 'numpy', 'pandas==0.25.3', 'peakutils', 'matplotlib'],
+    install_requires=['pyhrv', 'numpy', 'pandas==0.25.3', 'xlrd'
+                      'peakutils', 'matplotlib'],
 )
