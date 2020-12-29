@@ -37,8 +37,15 @@ class VSR:
             self.data = data = np.array(data)
             
         if type(data) == np.ndarray:
+            buffer = {}
             self.stats = (self.computeSignal(data) if
                            data.ndim == 1 else self.computeSignals(data))
+            for k in self.stats:
+                if(math.isnan(self.stats[k])):
+                    continue
+                else:
+                    buffer[k] = self.stats[k];
+            self.stats = buffer
         else:
             raise TypeError('Signal should be an np.ndarray')
 
