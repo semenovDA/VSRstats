@@ -11,13 +11,16 @@ from pyhrv.time_domain import time_domain
 
 # Util for display peaks on signal
 def showPeaks(signal):
-    peaks = peak.indexes(signal, min_dist=56, thres=0.16)
+    peaks = getPeaks(signal);
     fig = plt.figure(figsize=(30, 3))
     plt.scatter(x=peaks, y=[signal[j] for j in peaks],
                             color='red', marker = '*')
     plt.plot(signal)
     plt.show()
 
+# func to get peaks of signal
+def getPeaks(signal):
+    return peak.indexes(signal, min_dist=56, thres=0.16)
 
 # Read signal from file
 def loadSignal(filepath):
