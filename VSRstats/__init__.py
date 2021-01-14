@@ -65,12 +65,12 @@ class VSR:
         # Ignore un normal signls (with no peaks)
         if(len(peaks) == 0): return obj
             
-        nn = tools.nn_intervals(peaks)
+        self.nn = tools.nn_intervals(peaks)
         
         # Ignore un normal signls (with no NN)
-        if(len(nn) == 0): return obj
+        if(len(self.nn) == 0): return obj
             
-        stats = time_domain(nni=nn, rpeaks=peaks, # Compute VSR stats
+        stats = time_domain(nni=self.nn, rpeaks=peaks, # Compute VSR stats
                                         plot=False, show=False)
         for k in stats.keys():
             if k == 'nni_histogram': continue 
