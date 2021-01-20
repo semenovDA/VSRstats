@@ -52,10 +52,12 @@ class frequency_domain:
         if(type(obj[key]) == biosppy.utils.ReturnTuple
            or type(obj[key]) == dict):
             keys = obj[key].keys()
-        
+            
         if len(keys) == 0:
             if(type(obj[key]) == biosppy.utils.ReturnTuple):
                 return obj[key].as_dict()
+            elif(type(obj[key]) == np.ndarray):
+                return list(obj[key])
             else:
                 return obj[key]
 
