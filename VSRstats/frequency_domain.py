@@ -6,6 +6,7 @@ from struct import unpack
 import math
 import os
 from pyhrv import tools
+import biosppy
 
 import pyhrv.frequency_domain as fd
 
@@ -35,7 +36,7 @@ class frequency_domain:
         
         _, freq_i = fd._compute_parameters('fft', freq, power, self.bands)
         
-        return {'params': dict(params.__dict__), 'freq': freq,
+        return {'params': dict(params.as_dict()), 'freq': freq,
                 'power': power / 10**6, 'freq_i': freq_i}
     
     def _lomb_psd():
@@ -43,6 +44,25 @@ class frequency_domain:
     
     def _ar_psd():
         pass
+
+    def _walk_over(self, obj, key):
+        
+        keys = []
+
+        if(type(obj[key]) == biosppy.utils.ReturnTuple
+           or type(obj[key]) == dict):
+            keys = obj[key].keys()
+        
+        if len(keys) == 0:
+            if(type(obj[key]) == biosppy.utils.ReturnTuple):
+                return obj[key].as_dict()
+            else:
+                return obj[key]
+
+        res = {}
+        for k in keys:
+            res[k] = self._walk_over(obj[key], k)
+        return res     
 
     def _computeSignals(self, signals):
         return np.array([self.computeSignal(s) for s in signals])
@@ -59,9 +79,10 @@ class frequency_domain:
         nn = tools.nn_intervals(peaks)
         
         # Ignore un normal signls (with no NN)
-        if(len(nn) == 0): return obj
+        if(len(nn) == 0): return
 
-        obj['welch'] = self._welch_psd(nn, peaks)
+        welch = {'welch': self._welch_psd(nn, peaks)}
+        obj['welch'] = self._walk_over(welch, 'welch')
           
         return obj
 
