@@ -39,7 +39,14 @@ class frequency_domain:
         return {'params': dict(params.as_dict()), 'freq': freq,
                 'power': power / 10**6, 'freq_i': freq_i}
     
-    def _lomb_psd():
+    def _lomb_psd(self, nni, peaks):
+        params, freq, power = fd.lomb_psd(nni=nni, fbands=self.bands,
+                                  rpeaks=peaks, show=False, mode='dev')
+        
+        _, freq_i = fd._compute_parameters('lomb', freq, power, self.bands)
+        
+        return {'params': dict(params.as_dict()), 'freq': freq,
+                'power': power / 10**6, 'freq_i': freq_i}
         pass
     
     def _ar_psd():
@@ -86,8 +93,11 @@ class frequency_domain:
         if(len(nn) == 0): return
 
         welch = {'welch': self._welch_psd(nn, peaks)}
+        lomb = {'lomb': self._lomb_psd(nn, peaks)}
+        
         obj['welch'] = self._walk_over(welch, 'welch')
-          
+        obj['lomb'] = self._walk_over(lomb, 'lomb')
+        
         return obj
 
         
