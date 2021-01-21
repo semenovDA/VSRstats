@@ -49,7 +49,7 @@ class frequency_domain:
                 'power': power / 10**6, 'freq_i': freq_i}
     
     def _ar_psd(self, nni, peaks):
-        params, freq, power = fd.lomb_psd(nni=nni, fbands=self.bands,
+        params, freq, power = fd.ar_psd(nni=nni, fbands=self.bands,
                                   rpeaks=peaks, show=False, mode='dev')
         
         _, freq_i = fd._compute_parameters('ar', freq, power, self.bands)
