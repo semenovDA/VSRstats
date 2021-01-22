@@ -56,6 +56,8 @@ class time_domain:
         obj = dict(td.sdsd(nn, peaks), **obj)
         obj = dict(td.nn50(nn, peaks), **obj)
         obj = dict(td.nn20(nn, peaks), **obj)
+        obj = dict(td.geometrical_parameters(nn, peaks, plot=False), **obj)
+        del obj['nni_histogram'] 
 
         # Additional
         obj = dict({'cv': self._cv(obj['sdnn'], obj['nni_mean'])}, **obj)
