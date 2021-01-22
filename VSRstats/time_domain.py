@@ -57,8 +57,8 @@ class time_domain:
         obj = dict(td.nn50(nn, peaks), **obj)
         obj = dict(td.nn20(nn, peaks), **obj)
         obj = dict(td.geometrical_parameters(nn, peaks, plot=False), **obj)
-        del obj['nni_histogram'] 
-
+        del obj['nni_histogram']
+        
         # Additional
         obj = dict({'cv': self._cv(obj['sdnn'], obj['nni_mean'])}, **obj)
 
@@ -92,5 +92,9 @@ class time_domain:
         
         obj = dict({'(HF/LF)av': obj['HFav'] / obj['LFav']}, **obj)
         obj = dict({'IC': obj['LF'] / obj['VLF']}, **obj)
+
+        for k in obj:
+            if(math.isnan(obj[k])):
+                obj[k] = 0;
         
         return obj
