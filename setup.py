@@ -3,7 +3,7 @@ from os.path import join, dirname
 
 setup(
     name='VSRstats',
-    version='1.12',
+    version='1.13',
     author='Dmitry',
     author_email='semenov.da17@gmail.com',
     packages=['VSRstats'],
