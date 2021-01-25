@@ -90,7 +90,7 @@ class time_domain:
         obj = dict({'VLFav': welch['fft_abs'][bands.index('vlf')]}, **obj)
         obj = dict({'ULFav': welch['fft_abs'][bands.index('ulf')]}, **obj)
         
-        obj = dict({'(HF/LF)av': obj['HFav'] / obj['LFav']}, **obj)
+        obj = dict({'(LF/HF)av': obj['LFav']/ / obj['HFav']}, **obj)
         obj = dict({'IC': obj['LF'] / obj['VLF']}, **obj)
 
         for k in obj:
