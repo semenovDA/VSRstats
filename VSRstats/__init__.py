@@ -1,4 +1,3 @@
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from peakutils import peak
@@ -77,20 +76,4 @@ class VSR:
             obj[k] = stats[k]
 
         return obj
-
-
-    def to_df(self):
-        df = pd.DataFrame()
-        for row in self.stats:
-            df = df.append(row, ignore_index=True)
-            
-        return df
-
-    def to_excel(self, path):
-        df = self.to_df()
-        df.to_excel(path)
-            
-    def to_csv(self, path):
-        df = self.to_df()
-        df.to_csv(path, sep = ',', index = False)
         
