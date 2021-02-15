@@ -43,14 +43,6 @@ print(stats)
 'hr_min': 681.8181818181819, 'hr_max': 909.0909090909091, 'hr_std': 33.27091439584001, ..... 'tri_index': 1.6025641025641026}
 ```
 
-### Display signal peaks: ###
-```python
-from VSRstats import showPeaks
-showPeaks(signal)
-```
-#### Output: ####
-![Signal peaks](https://i.ibb.co/ctPMYxc/Figure-1.png)
-
 ### Usage example for signals: ###
 ```python
 filepathes = ['./data/d0001', './data/d0002', './data/d0003'] # Signals

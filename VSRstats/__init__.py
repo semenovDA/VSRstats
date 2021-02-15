@@ -1,8 +1,8 @@
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from peakutils import peak
 from struct import unpack
-import math
 import os
 
 import pyhrv.tools as tools
@@ -10,16 +10,13 @@ from pyhrv.time_domain import time_domain
 
 # Util for display peaks on signal
 def showPeaks(signal):
-    peaks = getPeaks(signal);
+    peaks = peak.indexes(signal, min_dist=56, thres=0.16)
     fig = plt.figure(figsize=(30, 3))
     plt.scatter(x=peaks, y=[signal[j] for j in peaks],
                             color='red', marker = '*')
     plt.plot(signal)
     plt.show()
 
-# func to get peaks of signal
-def getPeaks(signal):
-    return peak.indexes(signal, min_dist=56, thres=0.16)
 
 # Read signal from file
 def loadSignal(filepath):
@@ -30,7 +27,6 @@ def loadSignal(filepath):
     
     return arr
 
-#
     
 class VSR:
     
@@ -40,15 +36,8 @@ class VSR:
             self.data = data = np.array(data)
             
         if type(data) == np.ndarray:
-            buffer = {}
             self.stats = (self.computeSignal(data) if
                            data.ndim == 1 else self.computeSignals(data))
-            for k in self.stats:
-                if(math.isnan(self.stats[k])):
-                    continue
-                else:
-                    buffer[k] = self.stats[k];
-            self.stats = buffer
         else:
             raise TypeError('Signal should be an np.ndarray')
 
@@ -64,16 +53,32 @@ class VSR:
         # Ignore un normal signls (with no peaks)
         if(len(peaks) == 0): return obj
             
-        self.nn = tools.nn_intervals(peaks)
+        nn = tools.nn_intervals(peaks)
         
         # Ignore un normal signls (with no NN)
-        if(len(self.nn) == 0): return obj
+        if(len(nn) == 0): return obj
             
-        stats = time_domain(nni=self.nn, rpeaks=peaks, # Compute VSR stats
+        stats = time_domain(nni=nn, rpeaks=peaks, # Compute VSR stats
                                         plot=False, show=False)
         for k in stats.keys():
             if k == 'nni_histogram': continue 
             obj[k] = stats[k]
 
         return obj
+
+
+    def to_df(self):
+        df = pd.DataFrame()
+        for row in self.stats:
+            df = df.append(row, ignore_index=True)
+            
+        return df
+
+    def to_excel(self, path):
+        df = self.to_df()
+        df.to_excel(path)
+            
+    def to_csv(self, path):
+        df = self.to_df()
+        df.to_csv(path, sep = ',', index = False)
         

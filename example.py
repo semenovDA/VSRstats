@@ -13,6 +13,7 @@ def loadSignal(filepath):
     
     return arr
 
+# Compute signal
 filepath = './data/d0001' # path to signal
 signal = loadSignal(filepath)
 stats = VSR(signal).stats
@@ -22,6 +23,7 @@ print(stats)
 from VSRstats import showPeaks
 showPeaks(signal)
 
+# Compute signals
 filepathes = ['./data/d0001', './data/d0002', './data/d0003'] # Signals
 signals = np.array([loadSignal(f) for f in filepathes])
 vsr = VSR(signals)
