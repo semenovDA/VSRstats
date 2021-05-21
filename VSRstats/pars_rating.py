@@ -1,12 +1,10 @@
 import numpy as np
-from collections import Counter
 from peakutils import peak
 from struct import unpack
 import math
 import os
 
 from pyhrv import tools
-from scipy import stats
 from VSRstats.time_domain import time_domain
 import matplotlib.pyplot as plt
 
