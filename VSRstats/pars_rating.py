@@ -5,12 +5,13 @@ from struct import unpack
 import math
 import os
 
-import pyhrv.time_domain as td
 from pyhrv import tools
 from scipy import stats
 from VSRstats.time_domain import time_domain
-from VSRstats import getPeaks
 import matplotlib.pyplot as plt
+
+def getPeaks(signal):
+    return peak.indexes(signal, min_dist=56, thres=0.16)
 
 class pars_rating:
     
